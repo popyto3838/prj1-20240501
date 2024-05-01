@@ -12,23 +12,21 @@ import java.util.List;
 public interface BoardMapper {
 
     @Insert("""
-            INSERT INTO board(title,content,writer)
-            VALUES(#{title},#{content},#{writer}) 
+            INSERT INTO board (title, content, writer)
+            VALUES (#{title}, #{content}, #{writer})
             """)
     @Options(useGeneratedKeys = true, keyProperty = "id")
     int insert(Board board);
 
-
     @Select("""
-            SELECT*
+            SELECT *
             FROM board
-            WHERE id=#{id}
+            WHERE id = #{id}
             """)
     Board selectById(Integer id);
 
-
     @Select("""
-            SELECT*
+            SELECT *
             FROM board
             ORDER BY id DESC
             """)

@@ -22,34 +22,30 @@ public class BoardController {
 
     @PostMapping("/add")
     public String addPost(Board board, RedirectAttributes rttr) {
-        System.out.println("board = " + board);
-
         service.add(board);
 
         rttr.addAttribute("id", board.getId());
-        return "redirect:/board?id=" + board.getId();
+        return "redirect:/board";
     }
-
 
     // /board?id=3
     @GetMapping("/board")
     public String view(Integer id, Model model) {
-        // db의 게시물 조회
+        // 게시물 조회(select)
         Board board = service.get(id);
-        // 해서 모델에 넣고
+
+        // 모델에 넣고
         model.addAttribute("board", board);
-        // jsp로 포워드
+        // jsp 로 포워드
         return "board/view";
     }
 
-
     @GetMapping("/")
     public String home(Model model) {
-        //게시물 목록 조회 (select)
-
-        //모델에 넣고
-        ;        //jsp로 포워드
+        // 게시물 목록 조회(select)
+        // 모델에 넣고
+        model.addAttribute("boardList", service.list());
+        // jsp로 포워드
         return "board/home";
     }
-
 }

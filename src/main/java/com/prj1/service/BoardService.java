@@ -16,17 +16,15 @@ public class BoardService {
     private final BoardMapper mapper;
 
     public void add(Board board) {
-
         mapper.insert(board);
-
     }
 
     public Board get(Integer id) {
         return mapper.selectById(id);
     }
 
-
     public List<Board> list() {
+
         return mapper.selectAll();
     }
 }
