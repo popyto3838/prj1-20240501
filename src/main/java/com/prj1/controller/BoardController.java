@@ -72,4 +72,6 @@ public class BoardController {
         rttr.addAttribute("id", board.getId());
         return "redirect:/board";
     }
+
+
 }
