@@ -17,7 +17,6 @@ public class BoardController {
 
     @GetMapping("/add")
     public String add() {
-
         return "board/add";
     }
 
@@ -50,7 +49,6 @@ public class BoardController {
         return "board/home";
     }
 
-
     @PostMapping("/delete")
     public String delete(Integer id) {
         service.remove(id);
@@ -59,20 +57,18 @@ public class BoardController {
     }
 
     @GetMapping("/modify")
-    public String modify(Integer id, Model model) {
-
-        // 조회해서
-        //모델에 넣고
+    public String modifyForm(Integer id, Model model) {
+        // 조회 해서
+        // 모델에 넣고
         model.addAttribute("board", service.get(id));
-        //view로 포워드
+        // view로 포워드
         return "board/modify";
     }
 
     @PostMapping("/modify")
     public String modifyPost(Board board, RedirectAttributes rttr) {
-        System.out.println(board);
-
         service.modify(board);
+
         rttr.addAttribute("id", board.getId());
         return "redirect:/board";
     }
